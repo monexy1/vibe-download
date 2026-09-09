@@ -37,8 +37,8 @@
         <p>Современный мессенджер для друзей, сообществ и любимых каналов. Удобный, быстрый и стильный. Доступен на всех твоих устройствах.</p>
 
         <div class="actions">
-          <a class="download primary" href="downloads/Vibe-Setup.exe" data-download="windows">▣ <span>Скачать для<br><b>Windows</b></span><i>↓</i></a>
-          <a class="download" href="downloads/Vibe.apk" data-download="android">♙ <span>Скачать APK<br><b>Android</b></span><i>↓</i></a>
+          <a class="download primary" href="downloads/Vibe-Setup.exe" download="Vibe-Setup.exe">▣ <span>Скачать для<br><b>Windows</b></span><i>↓</i></a>
+          <a class="download" href="downloads/Vibe.apk" download="Vibe.apk">♙ <span>Скачать APK<br><b>Android</b></span><i>↓</i></a>
           <a class="download" href="https://vibe-so8r.onrender.com/" target="_blank" rel="noopener">◎ <span>Открыть<br><b>Веб-версию</b></span><i>↗</i></a>
         </div>
 
@@ -137,8 +137,8 @@
           <p>Установи приложение и продолжай общение в любом месте.</p>
         </div>
         <div class="big-buttons">
-          <a href="downloads/Vibe-Setup.exe" data-download="windows">Windows <span>↓</span></a>
-          <a href="downloads/Vibe.apk" data-download="android">Android <span>↓</span></a>
+          <a href="downloads/Vibe-Setup.exe" download="Vibe-Setup.exe">Windows <span>↓</span></a>
+          <a href="downloads/Vibe.apk" download="Vibe.apk">Android <span>↓</span></a>
           <a href="https://vibe-so8r.onrender.com/" target="_blank" rel="noopener">Web <span>↗</span></a>
         </div>
       </div>
@@ -172,44 +172,10 @@
   </footer>
 
 <script>
-  // Smoothly highlight the current navigation item.
   document.querySelectorAll('.links a').forEach(a => {
     a.addEventListener('click', () => {
       document.querySelectorAll('.links a').forEach(x => x.classList.remove('active'));
       a.classList.add('active');
-    });
-  });
-
-  const modal = document.getElementById('downloadModal');
-  const modalTitle = document.getElementById('downloadModalTitle');
-  const modalText = document.getElementById('downloadModalText');
-  const closeModal = () => { modal.setAttribute('aria-hidden', 'true'); };
-  modal.querySelector('.modal-close').addEventListener('click', closeModal);
-  modal.querySelector('.modal-ok').addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-  const names = {
-    windows: 'Windows-версия',
-    android: 'Android APK'
-  };
-
-  document.querySelectorAll('[data-download]').forEach(btn => {
-    btn.addEventListener('click', async e => {
-      e.preventDefault();
-      const target = btn.getAttribute('href');
-      try {
-        const res = await fetch(target, { method: 'HEAD', cache: 'no-store' });
-        if (res.ok) {
-          window.location.href = target;
-          return;
-        }
-      } catch (_) {}
-
-      modalTitle.textContent = names[btn.dataset.download] + ' пока не загружена';
-      modalText.innerHTML =
-        'Когда файл будет готов, положи его в папку <code>downloads</code> репозитория: ' +
-        '<code>' + target.split('/').pop() + '</code>. После коммита кнопка начнёт скачивать его автоматически.';
-      modal.setAttribute('aria-hidden', 'false');
     });
   });
 </script>

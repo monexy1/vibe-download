@@ -1,34 +1,44 @@
 # Vibe Download Site
 
-Официальный сайт скачивания Vibe.
+Сайт скачивания Vibe.
 
-## Структура
+## Файлы приложений
 
-- `index.html` — главная страница.
-- `style.css` — оформление и адаптив.
-- `assets/vibe-logo.png` — логотип Vibe.
-- `assets/vibe-desktop.png` — реальный скриншот интерфейса Vibe на ПК.
-- `assets/vibe-mobile.png` — реальный скриншот интерфейса Vibe на телефоне.
-- `downloads/Vibe-Setup.exe` — сюда положить Windows-установщик.
-- `downloads/Vibe.apk` — сюда положить Android APK.
+В GitHub в папке `downloads/` должны лежать ровно:
 
-## Как сделать кнопки скачивания рабочими
+- `Vibe-Setup.exe`
+- `Vibe.apk`
 
-1. Собери Windows установщик и назови его **Vibe-Setup.exe**.
-2. Собери Android APK и назови его **Vibe.apk**.
-3. Положи оба файла в папку `downloads/` в этом GitHub-репозитории.
-4. Сделай Commit changes.
-5. Render автоматически обновит Static Site.
-6. Кнопки «Скачать для Windows» и «Скачать APK Android» начнут отдавать реальные файлы.
+Имена важны: кнопки сайта ссылаются именно на них.
 
-Пока файлов нет, нажатие на кнопку показывает понятное окно вместо пустой/404-страницы.
+## Важное исправление кнопок
 
-## GitHub Pages / Render
+Кнопки Windows и Android теперь используют прямые ссылки на файлы. Предыдущая версия сначала делала `HEAD`-запрос, и на некоторых статических хостингах это могло ошибочно показывать сообщение «файл не загружен», даже когда файл существовал.
 
-`index.html` находится в корне репозитория. Для Render Static Site:
+Теперь после публикации ссылки сразу открывают скачивание.
+
+## GitHub
+
+Структура:
+
+```text
+vibe-download/
+├── index.html
+├── style.css
+├── assets/
+│   ├── vibe-logo.png
+│   ├── vibe-desktop.png
+│   └── vibe-mobile.png
+└── downloads/
+    ├── Vibe-Setup.exe
+    └── Vibe.apk
+```
+
+Обрати внимание: GitHub через браузер не принимает большие файлы как обычную загрузку. Windows-установщик размером около 93 МБ нужно загружать через Git/ GitHub Desktop (или Git LFS), а не через стандартное окно Upload files.
+
+## Render Static Site
+
 - Branch: `main`
 - Root Directory: пусто
 - Build Command: пусто
 - Publish Directory: `.`
-
-После добавления APK и EXE ничего в HTML менять не нужно.
